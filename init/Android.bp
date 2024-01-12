@@ -16,9 +16,9 @@
 //
 
 cc_library_static {
-    name: "libinit_klte",
+    name: "libinit_ks01lte",
     recovery_available: true,
-    srcs: ["init_klte.cpp"],
+    srcs: ["init_ks01lte.cpp"],
     include_dirs: [
         "device/samsung/msm8974-common/init",
         "system/core/init",

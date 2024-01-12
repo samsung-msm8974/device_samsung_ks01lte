@@ -13,25 +13,48 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# inherit from common klte
+DEVICE_PATH := device/samsung/ks01lte
+COMMON_PATH := device/samsung/msm8974-common
+
+# inherit from common msm8974-common
 include device/samsung/msm8974-common/BoardConfigCommon.mk
 
-TARGET_OTA_ASSERT_DEVICE := klte,klteacg,kltecan,kltetmo,klteub,klteusc,kltevzw,kltexx
+# Bluetooth
+BOARD_CUSTOM_BT_CONFIG := $(COMMON_PATH)/bluetooth/vnd_ks01lte.txt
+
+# Build Fingerprint
+BUILD_FINGERPRINT := samsung/ks01ltexx/ks01lte:5.0.1/LRX22C/I9506XXUDRB1:user/release-keys
+
+# Enable SVELTE memory configuration
+MALLOC_SVELTE := true
 
 # Kernel
-TARGET_KERNEL_CONFIG := lineage_klte_pn547_defconfig
+TARGET_KERNEL_CONFIG := lineage_ks01lte_defconfig
 
-# Fingerprint
-include $(COMMON_PATH)/fingerprint/board.mk
+# OTA
+TARGET_OTA_ASSERT_DEVICE := ks01lte,ks01ltexx,GT-I9506,ks01lteskt,ks01ltektt,ks01ltelgt
+
+# Partition
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2390753280	  # Dont change it
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 12528352256
+
+# Properties
+TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
+
+# Include
+TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 
 # Init
-TARGET_INIT_VENDOR_LIB := libinit_klte
+TARGET_INIT_VENDOR_LIB := libinit_ks01lte
 
 # NFC
-include $(COMMON_PATH)/nfc/pn547/board.mk
+BOARD_NFC_HAL_SUFFIX := msm8974
+
+# NFC
+include $(COMMON_PATH)/nfc/bcm2079x/board.mk
 
 # Radio/RIL
 include $(COMMON_PATH)/radio/single/board.mk
 
 # inherit from the proprietary version
-include vendor/samsung/klte/BoardConfigVendor.mk
+include vendor/samsung/ks01lte/BoardConfigVendor.mk
