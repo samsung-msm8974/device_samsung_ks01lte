@@ -8,8 +8,8 @@
 
 set -e
 
-export DEVICE=klte
-export DEVICE_COMMON=klte-common
+export DEVICE=ks01lte
+export DEVICE_COMMON=msm8974-common
 export VENDOR=samsung
 
 # Load extract_utils and do some sanity checks
@@ -31,7 +31,7 @@ setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}"
 # Warning headers and guards
 write_headers
 
-for BLOB_LIST in "${MY_DIR}"/device-proprietary-files*.txt; do
+for BLOB_LIST in "${MY_DIR}"/device-proprietary-files.txt; do
     write_makefiles "${BLOB_LIST}" true
 done
 

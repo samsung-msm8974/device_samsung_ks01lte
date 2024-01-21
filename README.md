@@ -1,24 +1,55 @@
-Copyright 2014 - The CyanogenMod Project
+Copyright 2022 - The Khalvat-M Project
 
-Copyright 2017 - The LineageOS Project
-
-Device configuration for Samsung Galaxy S5 Unified variants (SM-G900F, SM-G900M, SM-G900R4, SM-G900R7, SM-G900T, SM-G900V, SM-G900W8).
-========================================
+# Device configuration for Samsung Galaxy S4 LTE-A
+## Unified variants: GT-I9506 , SHV-E330S , SHV-E330K , SHV-E330L
 
 Basic   | Specification List
 -------:|:-------------------------
-CPU     | Quad-core 2.5 GHz Krait 400
-Chipset | Qualcomm MSM8974AC Snapdragon 801
+CPU     | Quad-core 2.3 GHz Krait 400
+Chipset | Qualcomm Snapdragon 800
 GPU     | Adreno 330
 Memory  | 2 GB
-Shipped Android Version | 4.4.2
+Shipped Android Version | 4.2.2 (Jelly Bean), upgradable to 5.0.1 (Lollipop); TouchWiz UI
 Storage | 16/32 GB
-MicroSD | Up to 256 GB
-Battery | Removable Li-Ion 2800 mAh
-Dimensions | 142 x 72.5 x 8.1 mm (5.59 x 2.85 x 0.32 in)
-Display | 1080 x 1920 pixels, 5.1"
-Rear Camera  | 16 MP, f/2.2, 31mm, phase detection autofocus, LED flash
-Front Camera | 2 MP, f/2.4, 22mm
-Release Date | February 2014
+MicroSD | Up to 64 GB
+Battery | Removable Li-Ion 2600 mAh
+Usb | microUSB 2.0 (MHL 2 TV-out), USB Host
+Dimensions | 136.6 x 69.8 x 7.9 mm (5.38 x 2.75 x 0.31 in)
+Display | 1080 x 1920 pixels 16:9 ratio (~441 ppi density)
+Rear Camera  | 13 MP, f/2.2, 31mm, OIS, autofocus, LED flash
+Front Camera | 2 MP, f/2.4, 27mm (wide), Dual video call
+Release Date | November 2013
 
-![Galaxy S5](http://cdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s5-g900f-1.jpg "Galaxy S5")
+![Galaxy S4 LTE-A](https://github.com/samsung-msm8974/device_samsung_ks01lte/blob/lineage-21/information/ks01lte.gif)
+
+# For building Android 14
+### Create `.repo/local_manifests/roomservice.xml` with the following content:
+
+***
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+ <manifest>
+        
+ <remote  name="khalvat"
+    fetch="https://github.com/samsung-msm8974"
+    revision="lineage-21" />
+
+ <remote  name="linos"
+    fetch="https://github.com/LineageOS"
+    revision="lineage-21" />
+
+    <!--LineageOS -->
+    <project name="android_hardware_samsung" path="hardware/samsung" remote="linos" />
+              
+    <!--Device -->
+    <project name="device_samsung_ks01lte" path="device/samsung/ks01lte" remote="khalvat" />
+    <project name="device_samsung_msm8974-common" path="device/samsung/msm8974-common" remote="khalvat" />
+           
+    <!--Kernel -->
+    <project name="kernel_samsung_msm8974" path="kernel/samsung/msm8974" remote="khalvat" />
+    
+    <!--Vendor -->
+    <project name="vendor_samsung" path="vendor/samsung" remote="khalvat" />
+                  
+ </manifest>
+```

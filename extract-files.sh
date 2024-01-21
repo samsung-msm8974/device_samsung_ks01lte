@@ -8,8 +8,8 @@
 
 set -e
 
-export DEVICE=klte
-export DEVICE_COMMON=klte-common
+export DEVICE=ks01lte
+export DEVICE_COMMON=msm8974-common
 export VENDOR=samsung
 
 function blob_fixup() {
